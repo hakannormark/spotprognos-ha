@@ -30,11 +30,13 @@ ignore = [
   "PLR0912", # too many branches
   "PLR0913", # too many arguments
   "PLR2004", # magic values
-  "RUF001",  # Swedish text contains "ambiguous" characters
+  "RUF001",  # Swedish text and formulas contain "ambiguous" characters
+  "RUF002",
+  "RUF003",
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["D", "PLC0415"]
+"tests/*" = ["D", "PLC0415", "PLR0917"]
 
 [tool.ruff.lint.isort]
 force-sort-within-sections = true
