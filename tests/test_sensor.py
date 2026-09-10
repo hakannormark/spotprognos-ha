@@ -79,6 +79,8 @@ async def test_entities_and_device(hass: HomeAssistant, mock_api, config_entry) 
         "tomorrow_max",
         "cheapest_3h",
         "forecast",
+        "next_month_average",
+        "degraded",
     }
     devices = dr.async_entries_for_config_entry(
         dr.async_get(hass), config_entry.entry_id

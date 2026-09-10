@@ -61,7 +61,11 @@
       "tomorrow_average": { "name": "Tomorrow's average price" },
       "tomorrow_max": { "name": "Tomorrow's highest price" },
       "cheapest_3h": { "name": "Cheapest three hours" },
-      "forecast": { "name": "Forecast" }
+      "forecast": { "name": "Forecast" },
+      "next_month_average": { "name": "Next month's average price" }
+    },
+    "binary_sensor": {
+      "degraded": { "name": "Degraded run" }
     }
   }
 }

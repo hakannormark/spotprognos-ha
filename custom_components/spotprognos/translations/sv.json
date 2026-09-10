@@ -61,7 +61,11 @@
       "tomorrow_average": { "name": "Morgondagens snittpris" },
       "tomorrow_max": { "name": "Morgondagens högsta pris" },
       "cheapest_3h": { "name": "Billigaste tre timmar" },
-      "forecast": { "name": "Prognos" }
+      "forecast": { "name": "Prognos" },
+      "next_month_average": { "name": "Nästa månads snittpris" }
+    },
+    "binary_sensor": {
+      "degraded": { "name": "Försämrad körning" }
     }
   }
 }

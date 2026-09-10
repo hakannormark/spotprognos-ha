@@ -19,6 +19,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
 from homeassistant.util import dt as dt_util
 
+from .api import Band, LongtermMonth
 from .coordinator import (
     MARKET_TZ,
     PricePoint,
@@ -289,6 +290,7 @@ async def async_setup_entry(
         SpotprognosSensor(coordinator, description) for description in SENSORS
     ]
     entities.append(SpotprognosForecastSensor(coordinator, FORECAST_SENSOR))
+    entities.append(SpotprognosNextMonthSensor(coordinator, NEXT_MONTH_SENSOR))
     async_add_entities(entities)
 
 
@@ -336,3 +338,69 @@ class SpotprognosForecastSensor(SpotprognosSensor):
     """The main sensor: current price with lists for charts and charging planners."""
 
     _unrecorded_attributes = LIST_ATTRIBUTES
+
+
+NEXT_MONTH_SENSOR = SensorEntityDescription(
+    key="next_month_average",
+    translation_key="next_month_average",
+    suggested_display_precision=2,
+)
+
+
+class SpotprognosNextMonthSensor(SpotprognosEntity, SensorEntity):
+    """Next calendar month's average price from longterm.json.
+
+    Uses the default model of longterm.json. That file has no exchange rate,
+    so the rate from the zone's forecast.json is used for öre/kWh.
+    """
+
+    def __init__(
+        self, coordinator: SpotprognosCoordinator, description: SensorEntityDescription
+    ) -> None:
+        """Initialize the sensor."""
+        super().__init__(coordinator, description.key)
+        self.entity_description = description
+        self._attr_native_unit_of_measurement = coordinator.settings.unit
+
+    def _month(self) -> tuple[LongtermMonth, Band, str] | None:
+        data = self.coordinator.data
+        month = data.next_month()
+        if month is None or data.longterm is None:
+            return None
+        model = data.longterm.default_model
+        band = month.models.get(model)
+        return (month, band, model) if band is not None else None
+
+    @property
+    def available(self) -> bool:
+        """Unavailable until longterm.json has next month for this zone."""
+        return super().available and self._month() is not None
+
+    @property
+    def native_value(self) -> float | None:
+        """Return the forecast average price for next month."""
+        found = self._month()
+        return self.coordinator.convert(found[1].p50) if found else None
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any] | None:
+        """Return the interval, the futures price and which month it is."""
+        found = self._month()
+        if found is None:
+            return None
+        month, band, model = found
+        convert = self.coordinator.convert
+        market = month.models.get("lt_market")
+        details = month.market or {}
+        return {
+            "month": month.month,
+            "label": month.label,
+            "model": model,
+            "p10": convert(band.p10),
+            "p90": convert(band.p90),
+            "lt_market": convert(market.p50) if market else None,
+            "lt_market_tenor": details.get("tenor"),
+            "lt_market_delivery": details.get("delivery"),
+            "last_year": convert(month.last_year),
+            "fx_rate": self.coordinator.fx_rate,
+        }
