@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly, so that new Home Assistant or HACS rules show up without a push.
+    - cron: "0 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests and lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: requirements_test.txt
+      - name: Install dependencies
+        run: pip install -r requirements_test.txt
+      - name: Ruff lint
+        run: ruff check .
+      - name: Ruff format
+        run: ruff format --check .
+      - name: Pytest
+        run: pytest
+
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hacs/action@main
+        with:
+          category: integration

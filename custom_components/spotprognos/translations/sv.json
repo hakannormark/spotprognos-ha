@@ -1,0 +1,15 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Välj elområde",
+        "data": {
+          "zone": "Elområde"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Det här elområdet är redan tillagt."
+    }
+  }
+}

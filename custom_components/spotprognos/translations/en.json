@@ -1,0 +1,15 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choose price zone",
+        "data": {
+          "zone": "Price zone"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This price zone is already configured."
+    }
+  }
+}
