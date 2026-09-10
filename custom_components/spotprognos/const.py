@@ -9,13 +9,11 @@ from typing import Final
 DOMAIN: Final = "spotprognos"
 LOGGER = logging.getLogger(__package__)
 
-BASE_URL: Final = "https://hakannormark.github.io/power-price-oracle/api/v1/"
 ATTRIBUTION: Final = "Data från Spotprognos (hakannormark.github.io/power-price-oracle)"
 
 # The files are rewritten four times a day and GitHub Pages caches them for up
 # to ten minutes. Polling every 30 minutes is enough; never go below 15.
 UPDATE_INTERVAL: Final = timedelta(minutes=30)
-REQUEST_TIMEOUT: Final = 30  # seconds
 
 ZONES: Final[dict[str, str]] = {
     "SE1": "Luleå",
