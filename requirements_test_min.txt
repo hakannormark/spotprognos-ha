@@ -1,0 +1,4 @@
+# Oldest supported Home Assistant (hacs.json), on Python 3.13.
+pytest-homeassistant-custom-component==0.13.269
+# That release does not pin pycares, and pycares 5 breaks its aiodns.
+pycares<5

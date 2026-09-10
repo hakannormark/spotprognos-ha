@@ -14,20 +14,36 @@ permissions:
 
 jobs:
   tests:
-    name: Tests and lint
+    name: Tests (Home Assistant ${{ matrix.homeassistant }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # The version hacs.json says is the minimum.
+          - homeassistant: "2025.8.0"
+            python: "3.13"
+            requirements: requirements_test_min.txt
+            lint: false
+          # The newest version.
+          - homeassistant: "2026.9.1"
+            python: "3.14"
+            requirements: requirements_test.txt
+            lint: true
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.14"
+          python-version: ${{ matrix.python }}
           cache: pip
-          cache-dependency-path: requirements_test.txt
+          cache-dependency-path: ${{ matrix.requirements }}
       - name: Install dependencies
-        run: pip install -r requirements_test.txt
+        run: pip install -r ${{ matrix.requirements }}
       - name: Ruff lint
+        if: matrix.lint
         run: ruff check .
       - name: Ruff format
+        if: matrix.lint
         run: ruff format --check .
       - name: Pytest
         run: pytest

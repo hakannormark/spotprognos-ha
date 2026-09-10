@@ -25,7 +25,8 @@ det behövs ingen nyckel.
 
 ## Installation
 
-Kräver Home Assistant 2026.9.1 eller senare och [HACS](https://hacs.xyz/).
+Kräver Home Assistant 2025.8 eller senare och [HACS](https://hacs.xyz/). Testad mot
+2025.8.0 och 2026.9.1.
 
 1. HACS → ⋮ (uppe till höger) → **Anpassade arkiv** (*Custom repositories*).
 2. Lägg till `https://github.com/hakannormark/spotprognos-ha` med kategorin
@@ -248,7 +249,7 @@ forecast for the Swedish price zones SE1–SE4, from the open
 **Install:** HACS → ⋮ → Custom repositories → add
 `https://github.com/hakannormark/spotprognos-ha` as an *Integration*, install
 **Spotprognos**, restart, then **Settings → Devices & services → Add integration →
-Spotprognos**. Requires Home Assistant 2026.9.1 or later.
+Spotprognos**. Requires Home Assistant 2025.8 or later.
 
 **Configure** one entry per price zone: the model (following the Spotprognos default
 model is recommended), the unit (öre/kWh or EUR/MWh), and optionally your supplier's
