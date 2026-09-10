@@ -54,15 +54,15 @@
     "sensor": {
       "current_price": { "name": "Current price" },
       "next_hour_price": { "name": "Next hour price" },
-      "today_min": { "name": "Today's lowest price" },
-      "today_average": { "name": "Today's average price" },
-      "today_max": { "name": "Today's highest price" },
-      "tomorrow_min": { "name": "Tomorrow's lowest price" },
-      "tomorrow_average": { "name": "Tomorrow's average price" },
-      "tomorrow_max": { "name": "Tomorrow's highest price" },
+      "today_min": { "name": "Lowest price today" },
+      "today_average": { "name": "Average price today" },
+      "today_max": { "name": "Highest price today" },
+      "tomorrow_min": { "name": "Lowest price tomorrow" },
+      "tomorrow_average": { "name": "Average price tomorrow" },
+      "tomorrow_max": { "name": "Highest price tomorrow" },
       "cheapest_3h": { "name": "Cheapest three hours" },
       "forecast": { "name": "Forecast" },
-      "next_month_average": { "name": "Next month's average price" }
+      "next_month_average": { "name": "Average price next month" }
     },
     "binary_sensor": {
       "degraded": { "name": "Degraded run" }

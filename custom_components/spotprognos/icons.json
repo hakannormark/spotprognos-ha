@@ -1,0 +1,17 @@
+{
+  "entity": {
+    "sensor": {
+      "current_price": { "default": "mdi:cash" },
+      "next_hour_price": { "default": "mdi:clock-fast" },
+      "today_min": { "default": "mdi:arrow-down" },
+      "today_average": { "default": "mdi:scale-balance" },
+      "today_max": { "default": "mdi:arrow-up" },
+      "tomorrow_min": { "default": "mdi:arrow-down" },
+      "tomorrow_average": { "default": "mdi:scale-balance" },
+      "tomorrow_max": { "default": "mdi:arrow-up" },
+      "cheapest_3h": { "default": "mdi:clock-start" },
+      "forecast": { "default": "mdi:chart-line" },
+      "next_month_average": { "default": "mdi:calendar-month" }
+    }
+  }
+}
