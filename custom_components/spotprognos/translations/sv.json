@@ -49,5 +49,19 @@
     "error": {
       "models_unavailable": "Kunde inte hämta listan över modeller från Spotprognos. Du kan fortsätta följa standardmodellen och försöka igen senare."
     }
+  },
+  "entity": {
+    "sensor": {
+      "current_price": { "name": "Pris just nu" },
+      "next_hour_price": { "name": "Pris nästa timme" },
+      "today_min": { "name": "Dagens lägsta pris" },
+      "today_average": { "name": "Dagens snittpris" },
+      "today_max": { "name": "Dagens högsta pris" },
+      "tomorrow_min": { "name": "Morgondagens lägsta pris" },
+      "tomorrow_average": { "name": "Morgondagens snittpris" },
+      "tomorrow_max": { "name": "Morgondagens högsta pris" },
+      "cheapest_3h": { "name": "Billigaste tre timmar" },
+      "forecast": { "name": "Prognos" }
+    }
   }
 }

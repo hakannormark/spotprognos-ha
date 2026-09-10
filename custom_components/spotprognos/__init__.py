@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant
 
 from .coordinator import SpotprognosConfigEntry, SpotprognosCoordinator
 
-PLATFORMS: list[Platform] = []
+PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: SpotprognosConfigEntry) -> bool:
