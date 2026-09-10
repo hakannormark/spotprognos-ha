@@ -2,14 +2,52 @@
   "config": {
     "step": {
       "user": {
-        "title": "Välj elområde",
+        "title": "Lägg till Spotprognos",
+        "description": "Elpris och sjudygnsprognos för ett svenskt elområde, från Spotprognos. Spotpriset är exklusive påslag, elcertifikat, energiskatt, nätavgift och moms, om du inte lägger till påslag och moms nedan.",
         "data": {
-          "zone": "Elområde"
+          "zone": "Elområde",
+          "model": "Modell",
+          "unit": "Enhet",
+          "markup": "Påslag",
+          "vat": "Lägg på moms (25 %)"
+        },
+        "data_description": {
+          "zone": "Varje elområde kan läggas till en gång.",
+          "model": "Används för timmar som saknar officiellt pris. Att följa standardmodellen rekommenderas: Spotprognos byter den när en annan modell mätt sig bättre.",
+          "unit": "öre/kWh räknas om med växelkursen som Spotprognos publicerar. EUR/MWh är priset som det handlas.",
+          "markup": "Elhandlarens påslag i öre/kWh exklusive moms, läggs på varje timme. Låt stå på 0 för rent spotpris.",
+          "vat": "Lägger 25 % moms på spotpris plus påslag. Av som standard."
         }
       }
     },
+    "error": {
+      "models_unavailable": "Kunde inte hämta listan över modeller från Spotprognos. Du kan följa standardmodellen nu och välja en annan senare under Konfigurera."
+    },
     "abort": {
       "already_configured": "Det här elområdet är redan tillagt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Inställningar för Spotprognos",
+        "description": "Spotpriset är exklusive påslag, elcertifikat, energiskatt, nätavgift och moms, om du inte lägger till påslag och moms nedan.",
+        "data": {
+          "model": "Modell",
+          "unit": "Enhet",
+          "markup": "Påslag",
+          "vat": "Lägg på moms (25 %)"
+        },
+        "data_description": {
+          "model": "Används för timmar som saknar officiellt pris. Att följa standardmodellen rekommenderas: Spotprognos byter den när en annan modell mätt sig bättre.",
+          "unit": "öre/kWh räknas om med växelkursen som Spotprognos publicerar. EUR/MWh är priset som det handlas.",
+          "markup": "Elhandlarens påslag i öre/kWh exklusive moms, läggs på varje timme. Låt stå på 0 för rent spotpris.",
+          "vat": "Lägger 25 % moms på spotpris plus påslag. Av som standard."
+        }
+      }
+    },
+    "error": {
+      "models_unavailable": "Kunde inte hämta listan över modeller från Spotprognos. Du kan fortsätta följa standardmodellen och försöka igen senare."
     }
   }
 }

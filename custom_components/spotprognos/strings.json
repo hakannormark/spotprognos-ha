@@ -2,14 +2,52 @@
   "config": {
     "step": {
       "user": {
-        "title": "Choose price zone",
+        "title": "Add Spotprognos",
+        "description": "Electricity price and a seven-day forecast for one Swedish price zone, from Spotprognos. The spot price excludes supplier markup, electricity certificates, energy tax, grid fees and VAT, unless you add markup and VAT below.",
         "data": {
-          "zone": "Price zone"
+          "zone": "Price zone",
+          "model": "Model",
+          "unit": "Unit",
+          "markup": "Markup",
+          "vat": "Add VAT (25 %)"
+        },
+        "data_description": {
+          "zone": "Each price zone can be added once.",
+          "model": "Used for hours without an official price. Following the default model is recommended: Spotprognos switches it when another model has measured better. Model names are in Swedish.",
+          "unit": "öre/kWh is converted with the exchange rate Spotprognos publishes. EUR/MWh is the price as traded.",
+          "markup": "Your supplier's markup in öre/kWh excluding VAT, added to every hour. Leave at 0 for the pure spot price.",
+          "vat": "Adds 25 % VAT to spot price plus markup. Off by default."
         }
       }
     },
+    "error": {
+      "models_unavailable": "Could not fetch the model list from Spotprognos. You can follow the default model now and choose another one later under Configure."
+    },
     "abort": {
-      "already_configured": "This price zone is already configured."
+      "already_configured": "This price zone is already added."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Spotprognos settings",
+        "description": "The spot price excludes supplier markup, electricity certificates, energy tax, grid fees and VAT, unless you add markup and VAT below.",
+        "data": {
+          "model": "Model",
+          "unit": "Unit",
+          "markup": "Markup",
+          "vat": "Add VAT (25 %)"
+        },
+        "data_description": {
+          "model": "Used for hours without an official price. Following the default model is recommended: Spotprognos switches it when another model has measured better. Model names are in Swedish.",
+          "unit": "öre/kWh is converted with the exchange rate Spotprognos publishes. EUR/MWh is the price as traded.",
+          "markup": "Your supplier's markup in öre/kWh excluding VAT, added to every hour. Leave at 0 for the pure spot price.",
+          "vat": "Adds 25 % VAT to spot price plus markup. Off by default."
+        }
+      }
+    },
+    "error": {
+      "models_unavailable": "Could not fetch the model list from Spotprognos. You can keep following the default model and try again later."
     }
   }
 }
